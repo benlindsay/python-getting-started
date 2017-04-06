@@ -22,6 +22,13 @@ $ heroku local
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
+Also for the front-end, be sure to have node, and npm installed and run:
+
+```sh
+npm install
+./node_modules/.bin/webpack --config webpack.config.js --watch
+```
+
 ## Deploying to Heroku
 
 ```sh
