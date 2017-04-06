@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "yelp recommender app",
   "main": "index.js",
+  "engines": {
+    "node": "7.4.0",
+    "npm": "4.0.5"
+  },
   "scripts": {
     "postinstall": "node_modules/webpack/bin/webpack.js",
     "test": "test"
