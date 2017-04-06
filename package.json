@@ -30,5 +30,6 @@
     "stats-webpack-plugin": "^0.6.0",
     "webpack": "^2.3.3",
     "webpack-bundle-tracker": "^0.2.0"
-  }
+  },
+  "engine": { "node": "6.10.2" }
 }
