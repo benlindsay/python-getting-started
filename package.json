@@ -8,7 +8,7 @@
     "npm": "4.0.5"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/webpack",
+    "postinstall": "webpack -p --config webpack.prod.config.js --progress",
     "test": "test"
   },
   "repository": {
