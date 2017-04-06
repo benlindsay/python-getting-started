@@ -1,0 +1,34 @@
+{
+  "name": "yelp-recommender-app",
+  "version": "1.0.0",
+  "description": "yelp recommender app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benlindsay/yelp-recommender-app.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benlindsay/yelp-recommender-app/issues"
+  },
+  "homepage": "https://github.com/benlindsay/yelp-recommender-app#readme",
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-plugin-transform-class-properties": "^6.16.0",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "jquery": "^3.2.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "stats-webpack-plugin": "^0.6.0",
+    "webpack": "^2.3.3",
+    "webpack-bundle-tracker": "^0.2.0"
+  }
+}

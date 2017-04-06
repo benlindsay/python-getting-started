@@ -3,3 +3,7 @@ venv
 staticfiles
 .env
 db.sqlite3
+node_modules/
+.idea/
+app/build/
+webpack-stats.json
