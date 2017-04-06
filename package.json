@@ -8,7 +8,7 @@
     "npm": "4.0.5"
   },
   "scripts": {
-    "postinstall": "node_modules/.bin/webpack --config webpack.config.js",
+    "postinstall": "./node_modules/.bin/webpack --config webpack.config.js",
     "test": "test"
   },
   "repository": {
@@ -21,7 +21,7 @@
     "url": "https://github.com/benlindsay/yelp-recommender-app/issues"
   },
   "homepage": "https://github.com/benlindsay/yelp-recommender-app#readme",
-  "devDependencies": {
+  "dependencies": {
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-plugin-transform-class-properties": "^6.16.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
@@ -35,6 +35,5 @@
     "stats-webpack-plugin": "^0.6.0",
     "webpack": "^2.3.3",
     "webpack-bundle-tracker": "^0.2.0"
-  },
-  "engine": { "node": "6.10.2" }
+  }
 }
