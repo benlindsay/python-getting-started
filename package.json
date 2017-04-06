@@ -4,6 +4,7 @@
   "description": "yelp recommender app",
   "main": "index.js",
   "scripts": {
+    "postinstall": "node_modules/webpack/bin/webpack.js",
     "test": "test"
   },
   "repository": {
