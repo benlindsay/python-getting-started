@@ -19,7 +19,7 @@ module.exports = {
   plugins: [
     //tells webpack where to store data about your bundles.
     new BundleTracker({filename: './webpack-stats.json'}),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {warnings: false},
       sourceMap: false,
@@ -27,8 +27,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {NODE_ENV: JSON.stringify('production')},
     }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin()
   ],
 
   module: {
