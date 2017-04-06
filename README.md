@@ -42,3 +42,6 @@ For more information about using Python on Heroku, see these Dev Center articles
 - [Python on Heroku](https://devcenter.heroku.com/categories/python)
 
 This application supports the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out.
+
+
+- Useful article to configure webpack with django http://geezhawk.github.io/using-react-with-django-rest-framework
