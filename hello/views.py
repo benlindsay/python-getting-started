@@ -3,6 +3,7 @@ from django.http import HttpResponse
 
 from .models import Greeting
 from django.http import JsonResponse
+from django.core import serializers
 
 # Create your views here.
 def index(request):
@@ -10,8 +11,9 @@ def index(request):
 
 # receives some parameters (category, location, bussiness type, etc), and suggest a list of cities for the user to rate
 def cities(request):
-    citiesList = ['id1', 'id2', 'id3'];
-    return JsonResponse(citiesList)
+    bussinessList = ['id1', 'id2', 'id3'];
+    serialized = serializers.serialize('json', bussinessList)
+    return JsonResponse(serialized, safe=False)
 
 
 # returns the points in the map

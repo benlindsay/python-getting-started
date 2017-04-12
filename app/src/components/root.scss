@@ -1,0 +1,21 @@
+
+.title {
+  margin-bottom: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto 0 auto;
+}
+
+:global {
+  .form-group label {
+    margin-right: 10px;
+  }
+
+  .form-group + .form-group,
+  .checkbox + .checkbox,
+  .form-group + .checkbox {
+    margin-left: 20px;
+  }
+}
