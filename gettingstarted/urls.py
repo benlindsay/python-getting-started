@@ -16,7 +16,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
     url(r'^db', hello.views.db, name='db'),
-    url(r'^cities', hello.views.cities, name='cities'),
+    url(r'^business', hello.views.business, name='business'),
     url(r'^map-points', hello.views.map_points, name='map_points'),
     url(r'^admin/', include(admin.site.urls)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

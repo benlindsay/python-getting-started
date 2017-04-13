@@ -28,8 +28,6 @@ export function Checkbox({label, checked = false}) {
 export default class Root extends React.Component {
   constructor(props) {
     super(props);
-
-
   }
 
   render () {
@@ -83,7 +81,7 @@ class BussinessRating extends React.Component {
   render () {
     return <div>
       DATA
-    </div>
+    </div>;
   }
 
   async fetchBusinesData() {
