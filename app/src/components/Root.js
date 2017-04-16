@@ -28,6 +28,10 @@ export function Checkbox({label, checked = false}) {
 export default class Root extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      business: []
+    };
   }
 
   render () {
@@ -56,7 +60,7 @@ export default class Root extends React.Component {
 
         <div className="row">
           <div className="col-sm-6">
-            <BussinessRating/>
+            {this.state.business.map((business)=><BussinessRating {...business} onRate={(rating)=>this.updateRatings(business.id, rating)} />)}
           </div>
           <div className="col-sm-6">
 
@@ -67,8 +71,16 @@ export default class Root extends React.Component {
   }
 
   async updateBussiness(bussinesSpec) {
-    // let data = await fetch('/cities');
+    let business = await fetch('/business');
+    this.setState({business});
   }
+}
+
+
+function BusinessCard({}) {
+  return <div className={styles.businessCard}>
+
+  </div>
 }
 
 

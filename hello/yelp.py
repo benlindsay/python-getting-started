@@ -7,9 +7,9 @@ def business_data(id):
     # sample here https://github.com/Yelp/yelp-fusion/blob/master/fusion/python/sample.py
     return {
         'id': id,
-        'image': '',
-        'name': '',
-        'url': ''
+        'image': 'https://s3-media3.fl.yelpcdn.com/bphoto/GAOokILdhJmA5Pn0Z9vYqw/ls.jpg',
+        'name': 'Lolita',
+        'url': 'https://www.yelp.com/biz/lolita-philadelphia-2'
     }
 
 

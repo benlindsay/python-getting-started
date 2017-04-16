@@ -29,7 +29,6 @@ def business(request):
     # 3. Call the YELP Api for each business and retrieve the business info
     businessList = [business_data(id) for id in business_ids]
 
-    # TODO: Find a way to return a JSON object
     # serialized = serializers.serialize('json', businessList)
     return JsonResponse(businessList, safe=False)
 
