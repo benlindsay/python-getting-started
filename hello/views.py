@@ -5,17 +5,17 @@ from .models import Greeting
 from django.http import JsonResponse
 from django.core import serializers
 
-from .predictions import get_business, map_locations
-from .yelp import business_data
+from .predictions import get_users, map_locations
+from .yelp import users_data
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
 # receives some parameters (category, location, business type, etc), and suggest a list of cities for the user to rate
-def business(request):
+def users(request):
     # 1. get the city details that were selected from the user
-    # /www.com/business?city=Montreal&restaurants=1&museums=1
+    # /www.com/users?city=Montreal&restaurants=1&museums=1
     city = request.GET.get('city', '')
 
     seen_categories = []
@@ -23,14 +23,14 @@ def business(request):
         if request.GET.get(category, False):
             seen_categories.append(category)
 
-    # 2. Get the businesses that should be rated by the user
-    business_ids = get_business(city, seen_categories)
+    # 2. Get the userses that should be rated by the user
+    users_ids = get_users(city, seen_categories)
 
-    # 3. Call the YELP Api for each business and retrieve the business info
-    businessList = [business_data(id) for id in business_ids]
+    # 3. Call the YELP Api for each users and retrieve the users info
+    usersList = [users_data(id) for id in users_ids]
 
-    # serialized = serializers.serialize('json', businessList)
-    return JsonResponse(businessList, safe=False)
+    # serialized = serializers.serialize('json', usersList)
+    return JsonResponse(usersList, safe=False)
 
 
 # returns the points in the map

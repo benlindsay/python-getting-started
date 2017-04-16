@@ -3,12 +3,15 @@
 
 
 
+
+
+
 # Function used to retrieve a list of business given some filters
 # City : name of the city
 # categories: array with the types of business eg: ['restaurants', 'bowling', ...]
 # Returns: an array with the ids of the businesses
-def get_business(city, categories):
-    # TODO
+def get_users(city, categories):
+    # TODO fill this with static users ids
     return ['id1', 'id2']
 
 
