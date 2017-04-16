@@ -79,12 +79,12 @@ export default class Root extends React.Component {
 }
 
 
-function UserCard({image, url, name, onClick}) {
+function UserCard({id, image, url, name, onClick}) {
   return <div className={styles.userCard}>
     <img src={image} alt="" className="img-thumbnail pull-left" />
     <div>
       <h3>{name}</h3>
-      <a href={url}>Check profile</a>
+      <a href={`https://www.yelp.com/user_details?userid=${id}`}>Check profile</a>
     </div>
     <div className="clearfix"></div>
   </div>;
