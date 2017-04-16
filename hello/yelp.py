@@ -1,5 +1,5 @@
 
-
+from random import randint
 
 # Given a bussiness id returns info about it calling the yelp API
 def users_data(id):
@@ -8,7 +8,7 @@ def users_data(id):
     return {
         'id': id,
         'image': 'https://s3-media3.fl.yelpcdn.com/bphoto/GAOokILdhJmA5Pn0Z9vYqw/ls.jpg',
-        'name': 'Lolita',
+        'name': 'Lolita ' + str(randint(0,9)),
         'url': 'https://www.yelp.com/biz/lolita-philadelphia-2'
     }
 

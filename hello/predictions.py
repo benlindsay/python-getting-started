@@ -12,7 +12,7 @@
 # Returns: an array with the ids of the businesses
 def get_users(city, categories):
     # TODO fill this with static users ids
-    return ['id1', 'id2']
+    return ['id1', 'id2', 'id3']
 
 
 

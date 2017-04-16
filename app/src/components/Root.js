@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './root.scss';
 import 'babel-polyfill';
 import {fetchBussiness} from "../yelp";
-
+import axios from 'axios'
 
 // Top layout component
 export function Layout({children}) {
@@ -16,10 +16,10 @@ export function Layout({children}) {
 }
 
 
-export function Checkbox({label, checked = false}) {
+export function Checkbox({label, checked = false, onChange}) {
   return <div className="checkbox">
     <label>
-      <input type="checkbox" checked={checked} /> {label}
+      <input type="checkbox" checked={checked} onChange={(e)=>onChange(e.target.value)} /> {label}
     </label>
   </div>;
 }
@@ -30,7 +30,8 @@ export default class Root extends React.Component {
     super(props);
 
     this.state = {
-      business: []
+      spec: {},
+      users: []
     };
   }
 
@@ -41,7 +42,7 @@ export default class Root extends React.Component {
         <form className="form-inline">
           <div className="form-group">
             <label>City</label>
-            <select className="form-control" selected="0" onChange={(e) => this.updateBussiness({city: e.target.value})}>
+            <select className="form-control" selected="0" onChange={(e) => this.updateUsers({...this.state.spec, city: e.target.value})}>
               <option value="0" disabled>Please select a city</option>
               <option value="1">New York</option>
               <option value="2">Philly</option>
@@ -49,7 +50,7 @@ export default class Root extends React.Component {
             </select>
           </div>
 
-          <Checkbox label="Restaurants" checked={true}/>
+          <Checkbox label="Restaurants" checked={!!this.state.spec.restaurants} onChange={(x)=>this.updateUsers({...this.state.spec, restaurant: x})} />
           <Checkbox label="Museums"/>
           <Checkbox label="Clothes Stores"/>
           <Checkbox label="Bowling Alleys"/>
@@ -60,7 +61,7 @@ export default class Root extends React.Component {
 
         <div className="row">
           <div className="col-sm-6">
-            {this.state.business.map((business)=><BussinessRating {...business} onRate={(rating)=>this.updateRatings(business.id, rating)} />)}
+            {this.state.users.map((user)=><UserCard {...user} onClick={(rating)=>this.updateRatings(user.id, rating)} />)}
           </div>
           <div className="col-sm-6">
 
@@ -70,38 +71,23 @@ export default class Root extends React.Component {
     </Layout>;
   }
 
-  async updateBussiness(bussinesSpec) {
-    let business = await fetch('/business');
-    this.setState({business});
-  }
-}
-
-
-function BusinessCard({}) {
-  return <div className={styles.businessCard}>
-
-  </div>
-}
-
-
-
-class BussinessRating extends React.Component {
-  componentDidMount () {
-    this.fetchBusinesData();
-  }
-
-  render () {
-    return <div>
-      DATA
-    </div>;
-  }
-
-  async fetchBusinesData() {
-    await fetchBussiness('2aFiy99vNLklCx3T_tGS9A');
+  async updateUsers(spec) {
+    let response = await axios.get('/users', spec);
+    this.setState({spec, users: response.data});
   }
 
 }
 
 
+function UserCard({image, url, name, onClick}) {
+  return <div className={styles.userCard}>
+    <img src={image} alt="" className="img-thumbnail pull-left" />
+    <div>
+      <h3>{name}</h3>
+      <a href={url}>Check profile</a>
+    </div>
+    <div className="clearfix"></div>
+  </div>;
+}
 
 
