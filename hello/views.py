@@ -23,7 +23,7 @@ def users(request):
         if request.GET.get(category, False):
             seen_categories.append(category)
 
-    # 2. Get the userses that should be rated by the user
+    # 2. Get the users that should be rated by the user
     users_ids = get_users(city, seen_categories)
 
     # 3. Call the YELP Api for each users and retrieve the users info

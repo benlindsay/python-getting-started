@@ -128,7 +128,7 @@ function UserCard({id, image, url, name, selected, onClick}) {
 function Loading() {
   return <div className={styles.loading}>
     <h4>Loading...</h4>
-    <img src={loading}/>
+    <img src={'/static/' + loading}/>
   </div>;
 }
 
