@@ -112,7 +112,7 @@ export default class Root extends React.Component {
 
 
 function UserCard({id, image, url, name, selected, onClick}) {
-  return <div className={selected ? styles.profileSelected : styles.profile} onClick={()=>onClick()}>
+  return <div className={styles.profile + ' ' + (selected ? styles.profileSelected : '')} onClick={()=>onClick()}>
     <img src="http://www.clipartbest.com/cliparts/RiA/yB6/RiAyB6GMT.png" alt="" className="checkmark pull-right" />
 
     <img src={image} alt="" className="img-thumbnail pull-left" />

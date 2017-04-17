@@ -61,7 +61,6 @@
 }
 
 .profileSelected {
-  composes: profile;
   background-color: #CFD8DC;
 
   :global {
