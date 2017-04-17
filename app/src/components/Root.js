@@ -3,7 +3,6 @@
 import React from 'react';
 import styles from './root.scss';
 import 'babel-polyfill';
-import {fetchBussiness} from "../yelp";
 import axios from 'axios'
 
 // Top layout component
@@ -31,8 +30,13 @@ export default class Root extends React.Component {
 
     this.state = {
       spec: {},
-      users: []
+      users: [],
+      selected: {}
     };
+  }
+
+  componentDidMount() {
+    this.updateUsers(this.state.spec);
   }
 
   render () {
@@ -61,7 +65,7 @@ export default class Root extends React.Component {
 
         <div className="row">
           <div className="col-sm-6">
-            {this.state.users.map((user)=><UserCard {...user} onClick={(rating)=>this.updateRatings(user.id, rating)} />)}
+            {this._renderUserList()}
           </div>
           <div className="col-sm-6">
 
@@ -71,20 +75,48 @@ export default class Root extends React.Component {
     </Layout>;
   }
 
-  async updateUsers(spec) {
-    let response = await axios.get('/users', spec);
-    this.setState({spec, users: response.data});
+  _renderUserList() {
+    return this.state.users.map((user)=>
+      <UserCard {...user} key={user.id} onClick={()=>this.toggleSelection(user.id)}
+                          selected={this.state.selected[user.id]} />
+    );
   }
 
+  reset() {
+    this.setState({
+      spec: {},
+      users: [],
+      selected: {}
+    });
+  }
+
+  async updateUsers(spec) {
+    this.reset();
+    let response = await axios.get('/users', spec);
+    let usersHash = {};
+    for (let userId of response.data) {
+      usersHash[userId] = false;
+    }
+    this.setState({spec, users: response.data, selected: usersHash});
+  }
+
+  toggleSelection(userId) {
+    this.setState({selected: {
+      ...this.state.selected,
+      [userId]: !this.state.selected[userId]
+    }});
+  }
 }
 
 
-function UserCard({id, image, url, name, onClick}) {
-  return <div className={styles.userCard}>
+function UserCard({id, image, url, name, selected, onClick}) {
+  return <div className={selected ? styles.profileSelected : styles.profile} onClick={()=>onClick()}>
+    <img src="http://www.clipartbest.com/cliparts/RiA/yB6/RiAyB6GMT.png" alt="" className="checkmark pull-right" />
+
     <img src={image} alt="" className="img-thumbnail pull-left" />
-    <div>
-      <h3>{name}</h3>
-      <a href={`https://www.yelp.com/user_details?userid=${id}`}>Check profile</a>
+    <div className="content">
+      <h3 className="title">{name}</h3>
+      <a href={url} target="_blank">Check profile</a>
     </div>
     <div className="clearfix"></div>
   </div>;

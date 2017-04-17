@@ -23,6 +23,50 @@
 
 
 
-.user-card {
 
+.profile {
+  border-color: #90A4AE;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+  img {
+    width: 80px;
+    height: 80px;
+  }
+
+  &:hover {
+    background-color: #ECEFF1;
+  }
+
+  :global {
+    .checkmark {
+      width: 30px;
+      height: 30px;
+      margin-top: 40px - 15px;
+      margin-right: 10px;
+      opacity: 0;
+    }
+
+    .content {
+      margin-left: 80px;
+      margin-right: 20px;
+      padding: 10px;
+    }
+
+    .title {
+      margin-top: 0;
+    }
+  }
+}
+
+.profileSelected {
+  composes: profile;
+  background-color: #CFD8DC;
+
+  :global {
+    .checkmark {
+      opacity: 1;
+    }
+  }
 }
