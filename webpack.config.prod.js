@@ -44,14 +44,11 @@ module.exports = {
           ],
         },
       },
-      {test: /\.(jpe?g|png|gif|svg|ico)$/, loader: 'url-loader?limit=10000'},
+      {test: /\.(jpe?g|png|gif|svg|ico)$/, loader: 'url-loader?limit=10000&name=static/[hash].[ext]'},
       {
         test: /\.scss$/,
-        use: [
-          {loader: 'style-loader'}, // creates style nodes from JS strings
-          {loader: 'css-loader'}, // translates CSS into CommonJS
-          {loader: 'sass-loader'}, // compiles Sass to CSS
-        ],
+        loaders: ['style-loader', 'css-loader?sourceMap=1&modules=1&localIdentName=[name]__[local]--[hash:base64:3]', 'sass-loader?sourceMap=1'],
+        exclude: ['node_modules'],
       },
     ]
   },
