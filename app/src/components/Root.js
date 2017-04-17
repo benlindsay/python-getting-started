@@ -18,11 +18,19 @@ export function Layout({children}) {
 export function Checkbox({label, checked = false, onChange}) {
   return <div className="checkbox">
     <label>
-      <input type="checkbox" checked={checked} onChange={(e)=>onChange(e.target.value)} /> {label}
+      <input type="checkbox" checked={checked} onChange={(e)=>onChange(e.target.checked)} /> {label}
     </label>
   </div>;
 }
 
+
+const CATEGORIES = {
+  restaurants: 'Restaurants',
+  museums: "Museums",
+  clothes_stores: "Clothes Stores",
+  bowling_alleys: "Bowling Alleys",
+  antique_stores: "Antique Stores"
+};
 
 export default class Root extends React.Component {
   constructor(props) {
@@ -45,20 +53,17 @@ export default class Root extends React.Component {
         <h2 className={styles.title}>Find the hottest spots</h2>
         <form className="form-inline">
           <div className="form-group">
-            <label>City</label>
+            <label>Select city</label>
             <select className="form-control" selected="0" onChange={(e) => this.updateUsers({...this.state.spec, city: e.target.value})}>
-              <option value="0" disabled>Please select a city</option>
               <option value="1">New York</option>
               <option value="2">Philly</option>
               <option value="3">Chicago</option>
             </select>
           </div>
 
-          <Checkbox label="Restaurants" checked={!!this.state.spec.restaurants} onChange={(x)=>this.updateUsers({...this.state.spec, restaurant: x})} />
-          <Checkbox label="Museums"/>
-          <Checkbox label="Clothes Stores"/>
-          <Checkbox label="Bowling Alleys"/>
-          <Checkbox label="Antique Stores"/>
+          {Object.keys(CATEGORIES).map((key)=>
+            <Checkbox label={CATEGORIES[key]} checked={!!this.state.spec[key]} onChange={(x)=>this.updateUsers({...this.state.spec, [key]: x})} />
+          )}
         </form>
 
         <hr/>
@@ -82,22 +87,14 @@ export default class Root extends React.Component {
     );
   }
 
-  reset() {
+  async updateUsers(spec) {
     this.setState({
-      spec: {},
+      spec,
       users: [],
       selected: {}
     });
-  }
-
-  async updateUsers(spec) {
-    this.reset();
-    let response = await axios.get('/users', spec);
-    let usersHash = {};
-    for (let userId of response.data) {
-      usersHash[userId] = false;
-    }
-    this.setState({spec, users: response.data, selected: usersHash});
+    let response = await axios.get('/users', {params: spec});
+    this.setState({users: response.data});
   }
 
   toggleSelection(userId) {
