@@ -44,7 +44,7 @@ module.exports = {
           ],
         },
       },
-      {test: /\.(jpe?g|png|gif|svg|ico)$/, loader: 'url?limit=10000'},
+      {test: /\.(jpe?g|png|gif|svg|ico)$/, loader: 'url-loader?limit=10000'},
       {
         test: /\.scss$/,
         use: [

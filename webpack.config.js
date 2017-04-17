@@ -46,7 +46,7 @@ module.exports = {
           ],
         },
       },
-      {test: /\.(jpe?g|png|gif|svg|ico)$/, loader: 'url?limit=10000'},
+      {test: /\.(jpe?g|png|gif|svg|ico)$/, loader: 'url-loader?limit=10000'},
       {
         test: /\.scss$/,
         loaders: ['style-loader', 'css-loader?sourceMap=1&modules=1&localIdentName=[name]__[local]--[hash:base64:3]', 'sass-loader?sourceMap=1'],

@@ -44,5 +44,9 @@
     "webpack-bundle-tracker": "^0.2.0",
     "webpack-dev-server": "^1.16.2",
     "yelp-fusion": "^1.0.3"
+  },
+  "devDependencies": {
+    "file-loader": "^0.11.1",
+    "url-loader": "^0.5.8"
   }
 }

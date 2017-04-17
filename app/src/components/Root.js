@@ -4,6 +4,7 @@ import React from 'react';
 import styles from './root.scss';
 import 'babel-polyfill';
 import axios from 'axios'
+import loading from './loading.gif';
 
 // Top layout component
 export function Layout({children}) {
@@ -68,14 +69,18 @@ export default class Root extends React.Component {
 
         <hr/>
 
-        <div className="row">
-          <div className="col-sm-6">
-            {this._renderUserList()}
-          </div>
-          <div className="col-sm-6">
+        {!this.state.users.length && <Loading />}
 
+        {this.state.users &&
+          <div className="row">
+            <div className="col-sm-6">
+              {this._renderUserList()}
+            </div>
+            <div className="col-sm-6">
+
+            </div>
           </div>
-        </div>
+        }
       </div>
     </Layout>;
   }
@@ -119,4 +124,11 @@ function UserCard({id, image, url, name, selected, onClick}) {
   </div>;
 }
 
+
+function Loading() {
+  return <div className={styles.loading}>
+    <h4>Loading...</h4>
+    <img src={loading}/>
+  </div>;
+}
 
