@@ -27,10 +27,15 @@ export function Checkbox({label, checked = false, onChange}) {
 
 const CATEGORIES = {
   restaurants: 'Restaurants',
-  museums: "Museums",
-  clothes_stores: "Clothes Stores",
-  bowling_alleys: "Bowling Alleys",
-  antique_stores: "Antique Stores"
+  shopping: 'Shopping',
+  beauty: 'Beauty & Spas',
+  nightlife: 'Nightlife',
+  bars: 'Bars',
+  active: 'Active Life',
+  fashion: 'Fashion',
+  coffee: 'Coffee & Tea',
+  arts: 'Arts & Entertainment',
+  hotels: 'Hotels & Travel',
 };
 
 export default class Root extends React.Component {
@@ -53,18 +58,20 @@ export default class Root extends React.Component {
       <div>
         <h2 className={styles.title}>Find the hottest spots</h2>
         <form className="form-inline">
-          <div className="form-group">
+          <div className="form-group mb-10">
             <label>Select city</label>
             <select className="form-control" selected="0" onChange={(e) => this.updateUsers({...this.state.spec, city: e.target.value})}>
-              <option value="1">New York</option>
-              <option value="2">Philly</option>
-              <option value="3">Chicago</option>
+              {['Cleveland', 'Champaign', 'Charlotte', 'Pittsburgh', 'Las Vegas', 'Montreal', 'Toronto', 'Phoenix', 'Madison'].map((city)=>
+                <option>{city}</option>
+              )}
             </select>
           </div>
 
-          {Object.keys(CATEGORIES).map((key)=>
-            <Checkbox label={CATEGORIES[key]} checked={!!this.state.spec[key]} onChange={(x)=>this.updateUsers({...this.state.spec, [key]: x})} />
-          )}
+          <div className={styles.checkContainer}>
+            {Object.keys(CATEGORIES).map((key)=>
+              <Checkbox label={CATEGORIES[key]} checked={!!this.state.spec[key]} onChange={(x)=>this.updateUsers({...this.state.spec, [key]: x})} />
+            )}
+          </div>
         </form>
 
         <hr/>

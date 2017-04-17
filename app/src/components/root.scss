@@ -13,15 +13,21 @@
     margin-right: 10px;
   }
 
-  .form-group + .form-group,
-  .checkbox + .checkbox,
-  .form-group + .checkbox {
-    margin-left: 20px;
+  .checkbox {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .mb-10 {
+    margin-bottom: 10px !important;
   }
 }
 
 
-
+.checkContainer {
+  margin-left: -10px;
+  margin-right: -10px;
+}
 
 
 .profile {
