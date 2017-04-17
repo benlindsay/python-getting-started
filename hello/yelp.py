@@ -9,15 +9,24 @@ def users_data(id):
     page = requests.get(url)
     tree = html.fromstring(page.content)
 
-    user_avatar = tree.xpath('//div[@class="photo-slideshow_image"]/a/img/@src')[0]
-    user_name = tree.xpath('//div[contains(@class, "user-profile_info")]/h1/text()')[0]
-    user_location = tree.xpath('//div[contains(@class, "user-profile_info")]/h3[contains(@class, "user-location")]/text()')[0]
+    user_avatar = tree.xpath('//div[@class="photo-slideshow_image"]/a/img/@src')
+    if user_avatar:
+        user_avatar = user_avatar[0]
+    else:
+        user_avatar = ''
+
+    user_name = tree.xpath('//div[contains(@class, "user-profile_info")]/h1/text()')
+    if user_name:
+        user_name = user_name[0]
+    else:
+        user_name = ''
+    # user_location = tree.xpath('//div[contains(@class, "user-profile_info")]/h3[contains(@class, "user-location")]/text()')
 
     return {
         'id': id,
         'image': user_avatar,
         'name': user_name,
-        'location': user_location,
+        # 'location': user_location,
         'url': url
     }
 
